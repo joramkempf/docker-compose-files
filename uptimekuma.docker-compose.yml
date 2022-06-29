@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: 'louislam/uptime-kuma:latest'
+    restart: unless-stopped
+    volumes:
+      - uptimekuma:/app/data
+    environment:
+      - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=1
+    networks:
+      webservernet:
+        ipv4_address: 10.0.0.5
+        aliases:
+          - uptimekuma
+
+volumes:
+  uptimekuma:
+
+networks:
+  webservernet:
+    external: true
+
+
+# Port 3001
