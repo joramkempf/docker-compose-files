@@ -1,0 +1,26 @@
+# Change the ADMIN_TOKEN before running
+
+version: '3.3'
+services:
+    server:
+        container_name: vaultwarden
+        volumes:
+            - data:/data/
+        image: 'vaultwarden/server:latest'
+        environment:
+            - ADMIN_TOKEN=CHANGEME
+            - SIGNUPS_ALLOWED=false
+        networks:
+            webservernet:
+                ipv4_address: 10.0.0.10
+                aliases:
+                    - vaultwarden
+
+volumes:
+  data:
+
+networks:
+  webservernet:
+    external: true
+
+# Port 80
