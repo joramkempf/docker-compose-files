@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer:/data
+    networks:
+      webservernet:
+        ipv4_address: 10.0.0.7
+        aliases:
+          - portainer
+
+volumes:
+  portainer:
+
+networks:
+  webservernet:
+    external: true
+
+# Port 9000
